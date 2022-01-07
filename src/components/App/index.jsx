@@ -5,6 +5,7 @@ import LoginPage from "../LoginPage";
 
 import ResetStyle from "./reset";
 import DataForm from "../teste";
+import SignUpPage from "../SignUpPage";
 
 export default function App(){
     return(
@@ -17,8 +18,7 @@ export default function App(){
             <ResetStyle/>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<LoginPage />}></Route> 
-                    <Route path="/teste" element={<DataForm />}></Route>
+                    <Route path="/" element={<SignUpPage />}></Route> 
                 </Routes>
             </BrowserRouter>
         </>
