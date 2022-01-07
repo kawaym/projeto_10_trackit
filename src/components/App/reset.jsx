@@ -28,7 +28,11 @@ const ResetStyle = createGlobalStyle`
         display: block;
     }
     body {
+        width: 100%;
         line-height: 1;
+        position: absolute;
+        bottom: 0;
+        top: 0;
     }
     ol, ul {
         list-style: none;
