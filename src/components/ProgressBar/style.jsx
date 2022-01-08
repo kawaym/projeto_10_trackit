@@ -9,20 +9,20 @@ const mainColor = "#52B6FF";
     border-radius: 50%;
 
     margin-bottom: 30px;
+    padding: 5px;
 
     background-color: ${mainColor};
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: Lexend Deca;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17.976px;
-    line-height: 22px;
-    text-align: center;
-    
-    color: #FFFFFF
+    p{
+        position: absolute;
+        top: 38px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        font-family: Lexend Deca;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 17.976px;
+        color: #FFFFFF;
+    }
 `
 
