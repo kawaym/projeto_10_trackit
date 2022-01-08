@@ -47,6 +47,7 @@ export default function LoginPage(){
                                 />
                                 <MainButton 
                                     disabled={isSubmitting}
+                                    text={"Entrar"}
                                 />
                             </form>
                         );

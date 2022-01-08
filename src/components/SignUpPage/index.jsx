@@ -73,6 +73,7 @@ export default function SignUpPage(){
                                 />
                                 <MainButton 
                                     disabled={isSubmitting}
+                                    text={"Cadastrar"}
                                 />
                             </form>
                         );
@@ -81,7 +82,7 @@ export default function SignUpPage(){
 
                 </Formik>
                 <p>
-                    Não tem uma conta? Cadastre-se!
+                    Já tem uma conta? Faça login!
                 </p>
             </Container>
         </>

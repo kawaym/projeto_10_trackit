@@ -6,6 +6,7 @@ import LoginPage from "../LoginPage";
 import ResetStyle from "./reset";
 import DataForm from "../teste";
 import SignUpPage from "../SignUpPage";
+import PageFrame from "../PageFrame";
 
 export default function App(){
     return(
@@ -18,7 +19,7 @@ export default function App(){
             <ResetStyle/>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<SignUpPage />}></Route> 
+                    <Route path="/" element={<PageFrame />}></Route>
                 </Routes>
             </BrowserRouter>
         </>
