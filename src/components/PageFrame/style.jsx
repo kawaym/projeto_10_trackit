@@ -24,10 +24,15 @@ export const ContainerPage = styled.div`
     width: 100%;
     
     position: fixed;
-    top: 0;
-    bottom: 0;
+    top: 70px;
+    bottom: 70px;
+
+    padding: 22px 18px;
     
     background-color: #E5E5E5;
+
+    display: flex;
+    flex-direction: column;
 `
 export const BottomMenu = styled.div`
     width: 100%;

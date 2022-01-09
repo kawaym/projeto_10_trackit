@@ -4,7 +4,6 @@ import { Helmet } from  "react-helmet";
 import LoginPage from "../LoginPage";
 
 import ResetStyle from "./reset";
-import DataForm from "../teste";
 import SignUpPage from "../SignUpPage";
 import PageFrame from "../PageFrame";
 
