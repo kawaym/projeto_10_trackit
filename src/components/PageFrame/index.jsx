@@ -1,10 +1,7 @@
 import { TopMenu, ContainerPage, BottomMenu, UserPic } from "./style"; 
 import ProgressBar from "../ProgressBar";
-import HabitsPage from "../HabitsPage";
-import TodayPage from "../TodayPage";
-import HistoryPage from "../HistoryPage";
 
-export default function PageFrame(){
+export default function PageFrame({ children }){
     return(
         <>
             <TopMenu>
@@ -19,7 +16,7 @@ export default function PageFrame(){
                 </UserPic>
             </TopMenu>
             <ContainerPage>
-                <HistoryPage></HistoryPage>
+                {children}
             </ContainerPage>
             <BottomMenu>
                 <p>Hábitos</p>

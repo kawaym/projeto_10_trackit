@@ -6,28 +6,37 @@ import MainButton from "../MainButton";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { serverPost } from "../../services";
+import { ErrorMessage } from "./style";
 
 export default function SignUpPage(){
+
+    const navigate = useNavigate();
+
     return(
         <>
             <Container>
                 <Logo />
 
                 <Formik
-                    initialValues={{email: '', password: '', name: '', photo: ''}}
+                    initialValues={{email: '', password: '', name: '', image: ''}}
                     onSubmit={async values => {
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                        alert(JSON.stringify(values, null, 2));
+                        serverPost(values);
+                        navigate("../", {replace: true});
                     }}
                     validationSchema={Yup.object().shape({
                         email: Yup.string()
                             .email()
                             .required("Required"),
                         password: Yup.string()
-                            .required("Required"),
+                            .required("Required")
+                            .min(8)
+                            .max(16),
                         name: Yup.string()
-                            .required("Required"),
-                        photo: Yup.string()
+                            .required("Required")
+                            .min(3),
+                        image: Yup.string()
                             .url()
                             .nullable()
                             .required("Required")
@@ -38,39 +47,47 @@ export default function SignUpPage(){
                             values,
                             touched,
                             errors,
-                            dirty,
                             isSubmitting,
                             handleChange,
                             handleBlur,
                             handleSubmit,
-                            handleReset
+                            isValid,
                         } = props;
                         return (
                             <form onSubmit={handleSubmit}>
                                 <InputTextBox 
                                     name="email"
+                                    field="email"
                                     value={values.email}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.email && touched.email}
                                 />
                                 <InputTextBox 
                                     name="password"
+                                    field="senha"
                                     value={values.password}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.password && touched.password}
                                 />
                                 <InputTextBox 
                                     name="name"
+                                    field="nome"
                                     value={values.name}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.name && touched.name}
                                 />
                                 <InputTextBox 
-                                    name="photo"
-                                    value={values.photo}
+                                    name="image"
+                                    field="foto"
+                                    value={values.image}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.image && touched.image}
                                 />
+                                {(!isValid && touched.email && touched.name && touched.password && touched.image) && <ErrorMessage>Por favor, cheque os campos em vermelho</ErrorMessage>}
                                 <MainButton 
                                     disabled={isSubmitting}
                                     text={"Cadastrar"}
@@ -78,12 +95,12 @@ export default function SignUpPage(){
                             </form>
                         );
                     }}
-
-
                 </Formik>
-                <p>
-                    Já tem uma conta? Faça login!
-                </p>
+                <Link to="/">
+                    <p>
+                        Já tem uma conta? Faça login!
+                    </p>
+                </Link>
             </Container>
         </>
     );

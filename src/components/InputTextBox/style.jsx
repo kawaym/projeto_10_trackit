@@ -18,12 +18,12 @@ const Input = styled.input`
     font-weight: normal;
     font-size: 19.976px;
     line-height: 25px;
-    /* identical to box height */
     
-    color: ${fontColor};
+    color: ${props => props.error ? 'red' : fontColor};
 
     &::placeholder {
         color: ${borderColor};
     }
+    
 `
 export default Input;
