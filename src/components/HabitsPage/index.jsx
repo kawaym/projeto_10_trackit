@@ -4,6 +4,7 @@ import { serverListHabits } from "../../services";
 import CreationHabit from "./CreationHabit";
 import IndividualHabit from "./IndividualHabit";
 import { TopMenu, MessageText, HabitsContainer } from "./style";
+import {useNavigate} from "react-router-dom";
 
 export default function HabitsPage(){
     const NoHabitMessage = <MessageText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</MessageText>
@@ -50,6 +51,14 @@ export default function HabitsPage(){
     
     const { setHabits } = useContext(TodayHabitsContext);
     const { user } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user.id === null){
+            navigate("/")
+        }
+    }, [user]);
 
     useEffect(() => {
         serverListHabits(user.token, setUserHabits, setHabits);

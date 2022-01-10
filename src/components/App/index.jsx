@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route}  from "react-router-dom";
 import { Helmet } from  "react-helmet";
+import { useState } from "react";
 
 import ResetStyle from "./reset";
 
@@ -11,7 +12,6 @@ import TodayPage from "../TodayPage";
 import HistoryPage from "../HistoryPage";
 
 import { UserContext } from "../../contexts";
-import { useState } from "react";
 
 export default function App(){
 
