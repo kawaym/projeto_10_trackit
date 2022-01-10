@@ -6,12 +6,18 @@ import MainButton from "../MainButton";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
 import { serverLogin } from "../../services";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts";
 
 export default function LoginPage(){
 
+
     const navigate = useNavigate();
+
+    const { setUser } = useContext(UserContext);
 
     return(
         <>
@@ -21,7 +27,7 @@ export default function LoginPage(){
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={async values => {
-                        serverLogin(values, navigate, "/hoje");
+                        serverLogin(values, navigate, setUser, "/hoje");
                     }}
                     validationSchema={Yup.object().shape({
                         email: Yup.string()
@@ -71,9 +77,11 @@ export default function LoginPage(){
 
 
                 </Formik>
-                <p>
-                    Não tem uma conta? Cadastre-se!
-                </p>
+                <Link to="/cadastro">
+                    <p>
+                        Não tem uma conta? Cadastre-se!
+                    </p>
+                </Link>
             </Container>
         </>
     )

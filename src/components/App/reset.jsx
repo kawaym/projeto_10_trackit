@@ -55,6 +55,11 @@ const ResetStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
     }
+    a{
+        color: inherit;
+        font-style: inherit;
+        text-decoration: inherit;
+    }
 `;
 
 export default ResetStyle;

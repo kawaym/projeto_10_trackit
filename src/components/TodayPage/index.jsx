@@ -1,7 +1,27 @@
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { TodayHabitsContext, UserContext } from "../../contexts";
+import { serverGetInfo } from "../../services";
 import IndividualHabit from "./IndividualHabit";
-import { InfoConclusion, TopMenu, HabitsContainer } from "./style";
+
+import { InfoConclusion, TopMenu, HabitsContainer, MessageText } from "./style";
 
 export default function TodayPage(){
+    const { user } = useContext(UserContext);
+    const { habits } = useContext(TodayHabitsContext);
+
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (user.id === null){
+            navigate("/")
+        }
+    }, [user]);
+
+    serverGetInfo(user.token);
+
+    const NoHabitMessage = <MessageText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</MessageText>;
+
     return(
         <>
         <TopMenu>
@@ -9,15 +29,8 @@ export default function TodayPage(){
             <InfoConclusion status={true}>Nenhum hábito concluído ainda</InfoConclusion>
         </TopMenu>
         <HabitsContainer>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
-            <IndividualHabit></IndividualHabit>
+            {habits === undefined && NoHabitMessage}
+            {habits !== undefined && habits.data.map(() => <IndividualHabit></IndividualHabit>)}
         </HabitsContainer>
         </>
     );

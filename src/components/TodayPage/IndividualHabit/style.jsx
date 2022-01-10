@@ -4,6 +4,7 @@ export const HabitContainer = styled.div`
 
     width: 100%;
     height: 94px;
+    min-height: 94px;
 
     background: #FFFFFF;
     border-radius: 5px;

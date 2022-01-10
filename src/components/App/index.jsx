@@ -10,24 +10,39 @@ import HabitsPage from "../HabitsPage";
 import TodayPage from "../TodayPage";
 import HistoryPage from "../HistoryPage";
 
+import { UserContext } from "../../contexts";
+import { useState } from "react";
+
 export default function App(){
+
+    const [user, setUser] = useState({
+        id: null,
+        name: "Kaway Marinho",
+        image: "https://st2.depositphotos.com/6544740/9337/i/600/depositphotos_93376372-stock-photo-sunset-over-sea-pier.jpg",
+        email: "teste@email.com",
+        password: "senhasecreta",
+        token: "mórole",
+    });
+
     return(
         <>
-            <Helmet>
-                <link rel="preconnect" href="https://fonts.googleapis.com"/>
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-                <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-            </Helmet>
-            <ResetStyle/>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<LoginPage />}></Route>
-                    <Route path="/cadastro" element={<SignUpPage />}></Route>
-                    <Route path="/habitos" element={<PageFrame><HabitsPage></HabitsPage></PageFrame>}></Route>
-                    <Route path="/hoje" element={<PageFrame><TodayPage></TodayPage></PageFrame>}></Route>
-                    <Route path="/historico" element={<PageFrame><HistoryPage></HistoryPage></PageFrame>}></Route>
-                </Routes>
-            </BrowserRouter>
+            <UserContext.Provider value={{user, setUser}}>
+                <Helmet>
+                    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+                    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+                </Helmet>
+                <ResetStyle/>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<LoginPage />}></Route>
+                        <Route path="/cadastro" element={<SignUpPage />}></Route>
+                        <Route path="/habitos" element={<PageFrame><HabitsPage></HabitsPage></PageFrame>}></Route>
+                        <Route path="/hoje" element={<PageFrame><TodayPage></TodayPage></PageFrame>}></Route>
+                        <Route path="/historico" element={<PageFrame><HistoryPage></HistoryPage></PageFrame>}></Route>
+                    </Routes>
+                </BrowserRouter>
+            </UserContext.Provider>
         </>
     );
 }

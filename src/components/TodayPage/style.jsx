@@ -40,3 +40,18 @@ export const HabitsContainer = styled.div`
 
     overflow-y: scroll;
 `
+export const MessageText = styled.p`
+
+    width: 338px;
+    height: 74px;
+    left: 17px;
+    top: 155px;
+    
+    font-family: Lexend Deca;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: #666666;
+
+`;

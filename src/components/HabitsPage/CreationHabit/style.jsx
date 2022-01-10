@@ -16,6 +16,10 @@ export const HabitCreationContainer = styled.div`
 
     position: relative;
 
+    form{
+        
+    }
+
     button{
         width: 84px;
         height: 35px;
@@ -48,6 +52,8 @@ export const HabitNameInput = styled.input`
     font-family: Lexend Deca;
     font-size: 19.976px;
     color: #666666;
+
+    margin-bottom: 8px;
 
     &::placeholder{
         font-family: Lexend Deca;
