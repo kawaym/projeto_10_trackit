@@ -52,3 +52,34 @@ export const MessageText = styled.p`
     color: #666666;
 
 `;
+
+export const Days = styled.div`
+
+    display: flex;
+    gap: 4px;
+
+`;
+
+export const Weekday = styled.div`
+
+    width: 30px;
+    height: 30px;
+
+    background-color: ${props => props.status === "marked" ? "#CFCFCF" : "#FFFFFF"};
+
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Lexend Deca;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19.976px;
+    line-height: 25px;
+
+    color: ${props => props.status === "marked" ? "#FFFFFF" : "#CFCFCF"};
+
+`;

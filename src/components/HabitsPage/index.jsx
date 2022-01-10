@@ -1,3 +1,4 @@
+import CreationHabit from "./CreationHabit";
 import IndividualHabit from "./IndividualHabit";
 import { TopMenu, MessageText, HabitsContainer } from "./style";
 
@@ -12,6 +13,7 @@ export default function HabitsPage(){
                 </button>
             </TopMenu>
             <HabitsContainer>
+                {true && <CreationHabit/>}
                 <IndividualHabit></IndividualHabit>
                 {true && NoHabitMessage}
             </HabitsContainer>

@@ -1,8 +1,8 @@
-import { HabitContainer } from "./style";
+import { ButtonsContainer, HabitCreationContainer, HabitNameInput } from "./style";
 import { Days, Weekday } from "../style";
-import { BsTrash } from "react-icons/bs"
+import MainButton from "../../MainButton";
 
-export default function IndividualHabit(){
+export default function CreationHabit(){
     const weekdays = [
         {
             day: "D",
@@ -33,15 +33,20 @@ export default function IndividualHabit(){
             status: "marked",
         },
     ]
-    return(
-        <HabitContainer>
-            <BsTrash />
-            <p>
-                Ler 1 capítulo de livro
-            </p>
+    return (
+        <HabitCreationContainer>
+            <HabitNameInput
+                placeholder="nome do hábito"
+            >
+            </HabitNameInput>
             <Days>
                 {weekdays.map((day) => <Weekday status={day.status} key={weekdays.indexOf(day)}>{day.day}</Weekday>)}
             </Days>
-        </HabitContainer>
+
+            <ButtonsContainer>
+                <button type="reset">Cancelar</button>
+                <MainButton text="Salvar"/>
+            </ButtonsContainer>
+        </HabitCreationContainer>
     );
-}
+};
