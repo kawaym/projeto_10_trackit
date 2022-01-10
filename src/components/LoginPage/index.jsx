@@ -5,8 +5,14 @@ import InputTextBox from "../InputTextBox";
 import MainButton from "../MainButton";
 
 import { Formik } from "formik";
+import * as Yup from "yup";
+import { serverLogin } from "../../services";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage(){
+
+    const navigate = useNavigate();
+
     return(
         <>
             <Container>
@@ -15,35 +21,45 @@ export default function LoginPage(){
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={async values => {
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                        alert(JSON.stringify(values, null, 2));
+                        serverLogin(values, navigate, "/hoje");
                     }}
+                    validationSchema={Yup.object().shape({
+                        email: Yup.string()
+                            .email()
+                            .required("Required"),
+                        password: Yup.string()
+                            .required("Required")
+                            .min(8)
+                            .max(16),
+                    })}
                 >
                     {props => {
                         const {
                             values,
                             touched,
                             errors,
-                            dirty,
                             isSubmitting,
                             handleChange,
                             handleBlur,
                             handleSubmit,
-                            handleReset
                         } = props;
                         return (
                             <form onSubmit={handleSubmit}>
                                 <InputTextBox 
                                     name="email"
+                                    field="email"
                                     value={values.email}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.email && touched.email}
                                 />
                                 <InputTextBox 
                                     name="password"
+                                    field="senha"
                                     value={values.password}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
+                                    error={errors.password && touched.password}
                                 />
                                 <MainButton 
                                     disabled={isSubmitting}

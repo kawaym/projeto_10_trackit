@@ -7,7 +7,7 @@ import MainButton from "../MainButton";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { serverPost } from "../../services";
+import { serverSignUp } from "../../services";
 import { ErrorMessage } from "./style";
 
 export default function SignUpPage(){
@@ -22,7 +22,7 @@ export default function SignUpPage(){
                 <Formik
                     initialValues={{email: '', password: '', name: '', image: ''}}
                     onSubmit={async values => {
-                        serverPost(values);
+                        serverSignUp(values);
                         navigate("../", {replace: true});
                     }}
                     validationSchema={Yup.object().shape({
