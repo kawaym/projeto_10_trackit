@@ -22,7 +22,6 @@ export default function TodayPage(){
 
     useEffect(() => {
         serverListTodayHabits(user.token, setHabits);
-        console.log(habits);
     }, []);
 
 

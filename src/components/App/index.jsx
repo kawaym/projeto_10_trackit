@@ -34,7 +34,7 @@ export default function App(){
                     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
                 </Helmet>
                 <ResetStyle/>
-                <BrowserRouter>
+                <BrowserRouter basename={process.env.PUBLIC_URL}>
                     <Routes>
                         <Route path="/" element={<LoginPage />}></Route>
                         <Route path="/cadastro" element={<SignUpPage />}></Route>

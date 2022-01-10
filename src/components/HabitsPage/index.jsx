@@ -63,7 +63,6 @@ export default function HabitsPage(){
     useEffect(() => {
         serverListHabits(user.token, setUserHabits, setHabits);
     }, [isCreatingHabit])
-    console.log(userHabits);
     return(
         <>
             <TopMenu>

@@ -2,7 +2,6 @@ import { ThreeDots } from "react-loader-spinner"
 import Button from "./style"
 
 export default function MainButton({ disabled, text}){
-    console.log(disabled)
     return (
         <Button
             type="submit"

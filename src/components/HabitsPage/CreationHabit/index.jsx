@@ -23,7 +23,6 @@ export default function CreationHabit({ setIsCreatingHabit, creationData, setCre
         }
         setCreationData({...creationData, days: [...dayList]});
     }
-    console.log(creationData);
     return (
         <HabitCreationContainer>
             <Formik

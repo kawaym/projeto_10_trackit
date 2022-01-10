@@ -8,7 +8,7 @@ const SERVER_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit";
 export const serverSignUp = (info) => {
     const request = axios.post(`${SERVER_URL}/auth/sign-up`, info);
 
-    request.then(answer => console.log((JSON.stringify(answer, null, 2))));
+    request.then();
 }
 export const serverLogin = (info, navigate, setUser, path) => {
     const request = axios.post(`${SERVER_URL}/auth/login`, info);
@@ -27,7 +27,7 @@ export const serverGetInfo = (token) => {
     }
 
     const promise = axios.get(`${SERVER_URL}/habits/today`, config);
-    promise.then((answer) => console.log(answer));
+    promise.then();
 }
 export const serverCreateHabit = (token, body, setIsCreatingHabit) => {
     const config = {
@@ -40,11 +40,10 @@ export const serverCreateHabit = (token, body, setIsCreatingHabit) => {
         return;
     }
     const request = axios.post(`${SERVER_URL}/habits`, body, config);
-    request.then(answer => {console.log(JSON.stringify(answer, null, 2))
+    request.then(answer => {
         setIsCreatingHabit(false);
     });
     request.catch(requestAnswer => {
-        console.log(JSON.stringify(requestAnswer, null, 2))
         alert(requestAnswer.message);
     });
 }
