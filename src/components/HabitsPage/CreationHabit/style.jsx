@@ -53,7 +53,7 @@ export const HabitNameInput = styled.input`
     font-size: 19.976px;
     color: #666666;
 
-    margin-bottom: 8px;
+    margin-bottom: 18px;
 
     &::placeholder{
         font-family: Lexend Deca;
@@ -67,10 +67,14 @@ export const HabitNameInput = styled.input`
 
 export const ButtonsContainer = styled.div`
     
+    width: 100%;
+
     position: absolute;
     bottom: 18px;
+    right: 18px;
 
     display: flex;
     align-self: flex-end;
+    justify-content: right;
 
 `;

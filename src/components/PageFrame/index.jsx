@@ -8,9 +8,7 @@ export default function PageFrame({ children }){
 
     const { user, setUser } = useContext(UserContext);
     
-    const { habits, setHabits } = useState({
-        data: [],
-    });
+    const [ habits, setHabits ] = useState([]);
 
     return(
         <>
@@ -36,7 +34,9 @@ export default function PageFrame({ children }){
                     <Link to="/hoje">
                         <ProgressBar></ProgressBar>
                     </Link>
-                    <p>Histórico</p>
+                    <Link to="/historico">
+                        <p>Histórico</p>
+                    </Link>
                 </BottomMenu>
             </TodayHabitsContext.Provider>
         </>

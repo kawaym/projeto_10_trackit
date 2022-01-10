@@ -1,6 +1,6 @@
 import Input from "./style";
 
-export default function InputTextBox({ name, field, value, handleChange, handleBlur, error }){
+export default function InputTextBox({ name, field, value, handleChange, handleBlur, error, disabled }){
     return(
         <Input 
             name = {name}
@@ -10,6 +10,7 @@ export default function InputTextBox({ name, field, value, handleChange, handleB
             onChange = {handleChange}
             onBlur = {handleBlur}  
             error = {error}
+            disabled = {disabled}
         />
     )
 }

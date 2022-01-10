@@ -24,6 +24,14 @@ const Input = styled.input`
     &::placeholder {
         color: ${borderColor};
     }
+    &:disabled{
+        color: #AFAFAF;
+
+        background: #F2F2F2;
+        border: 1px solid #D5D5D5;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
     
 `
 export default Input;

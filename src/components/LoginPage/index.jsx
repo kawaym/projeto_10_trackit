@@ -27,6 +27,7 @@ export default function LoginPage(){
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={async values => {
+                        await new Promise(resolve => setTimeout(resolve, 500));
                         serverLogin(values, navigate, setUser, "/hoje");
                     }}
                     validationSchema={Yup.object().shape({
@@ -35,8 +36,6 @@ export default function LoginPage(){
                             .required("Required"),
                         password: Yup.string()
                             .required("Required")
-                            .min(8)
-                            .max(16),
                     })}
                 >
                     {props => {
@@ -58,6 +57,7 @@ export default function LoginPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.email && touched.email}
+                                    disabled={isSubmitting}
                                 />
                                 <InputTextBox 
                                     name="password"
@@ -66,6 +66,7 @@ export default function LoginPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.password && touched.password}
+                                    disabled={isSubmitting}
                                 />
                                 <MainButton 
                                     disabled={isSubmitting}

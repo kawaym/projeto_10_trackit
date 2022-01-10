@@ -22,6 +22,7 @@ export default function SignUpPage(){
                 <Formik
                     initialValues={{email: '', password: '', name: '', image: ''}}
                     onSubmit={async values => {
+                        await new Promise(resolve => setTimeout(resolve, 500));
                         serverSignUp(values);
                         navigate("../", {replace: true});
                     }}
@@ -30,9 +31,7 @@ export default function SignUpPage(){
                             .email()
                             .required("Required"),
                         password: Yup.string()
-                            .required("Required")
-                            .min(8)
-                            .max(16),
+                            .required("Required"),
                         name: Yup.string()
                             .required("Required")
                             .min(3),
@@ -62,6 +61,7 @@ export default function SignUpPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.email && touched.email}
+                                    disabled={isSubmitting}
                                 />
                                 <InputTextBox 
                                     name="password"
@@ -70,6 +70,7 @@ export default function SignUpPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.password && touched.password}
+                                    disabled={isSubmitting}
                                 />
                                 <InputTextBox 
                                     name="name"
@@ -78,6 +79,7 @@ export default function SignUpPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.name && touched.name}
+                                    disabled={isSubmitting}
                                 />
                                 <InputTextBox 
                                     name="image"
@@ -86,6 +88,7 @@ export default function SignUpPage(){
                                     handleChange={handleChange}
                                     handleBlur={handleBlur}
                                     error={errors.image && touched.image}
+                                    disabled={isSubmitting}
                                 />
                                 {(!isValid && touched.email && touched.name && touched.password && touched.image) && <ErrorMessage>Por favor, cheque os campos em vermelho</ErrorMessage>}
                                 <MainButton 

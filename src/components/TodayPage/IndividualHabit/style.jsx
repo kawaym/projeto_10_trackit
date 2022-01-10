@@ -39,8 +39,11 @@ export const HabitInfo = styled.div`
     line-height: 16px;
     color: #666666;
 
-    p span{
-        color: #8FC549;
+    p span:first-child{
+        color: ${props => props.done && "#8FC549"};
+    }
+    p span:last-child{
+        color: ${props => props.done && props.isEqual && "#8FC549"};
     }
 
 `

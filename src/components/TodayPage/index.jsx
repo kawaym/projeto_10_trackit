@@ -1,14 +1,16 @@
+import dayjs from "dayjs";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { TodayHabitsContext, UserContext } from "../../contexts";
-import { serverGetInfo } from "../../services";
+import { getToday, serverGetInfo, serverListTodayHabits } from "../../services";
 import IndividualHabit from "./IndividualHabit";
 
 import { InfoConclusion, TopMenu, HabitsContainer, MessageText } from "./style";
 
 export default function TodayPage(){
+
     const { user } = useContext(UserContext);
-    const { habits } = useContext(TodayHabitsContext);
+    const { habits, setHabits } = useContext(TodayHabitsContext);
 
     const navigate = useNavigate();
     
@@ -18,20 +20,40 @@ export default function TodayPage(){
         }
     }, [user]);
 
+    useEffect(() => {
+        serverListTodayHabits(user.token, setHabits);
+        console.log(habits);
+    }, []);
+
+
     serverGetInfo(user.token);
 
     const NoHabitMessage = <MessageText>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</MessageText>;
 
+    const totalHabits = habits.length;
+    const doneHabits = habits.filter((habit) => habit.done === true).length;
+
+    const percentage = (doneHabits / totalHabits * 100).toFixed(0);
     return(
         <>
-        <TopMenu>
-            <h1>Segunda, 17/05</h1>
-            <InfoConclusion status={true}>Nenhum hábito concluído ainda</InfoConclusion>
-        </TopMenu>
-        <HabitsContainer>
-            {habits === undefined && NoHabitMessage}
-            {habits !== undefined && habits.data.map(() => <IndividualHabit></IndividualHabit>)}
-        </HabitsContainer>
+            <TopMenu>
+                <h1>{getToday()}</h1>
+                {percentage === '0' && <InfoConclusion status={false}>Nenhum hábito concluído ainda</InfoConclusion>}
+                {percentage !== '0' && <InfoConclusion status={true}>{percentage}% dos hábitos concluídos</InfoConclusion>}
+            </TopMenu>
+            <HabitsContainer>
+                {habits.length === 0 && NoHabitMessage}
+                {habits.length !== 0 && habits.map((habit) => <IndividualHabit   
+                                                    key={habit.id}
+                                                    id={habit.id}
+                                                    name={habit.name}
+                                                    done={habit.done}
+                                                    currentSequence={habit.currentSequence}
+                                                    highestSequence={habit.highestSequence}
+                                                    token={user.token}
+                                                    setHabits={setHabits}
+                                                 ></IndividualHabit>)}
+            </HabitsContainer>
         </>
     );
 };
